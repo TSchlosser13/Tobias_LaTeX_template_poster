@@ -13,33 +13,51 @@
 
 
 % TODO
+
 \usepackage[a1paper]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[poster]{tcolorbox}
 \usepackage{lipsum}
+
+\newcommand*{\mycaption}[1]{\begin{center}\small #1\end{center}}
+
 \pagestyle{empty}
 
-\usepackage{calc, fontawesome, lmodern}
+
+% Tobias
+
+\usepackage{amsfonts, lmodern, mathtools}
 
 \usepackage[main=english, ngerman]{babel}
+\usepackage[hang]{caption}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
+\usepackage[hyphens]{url}
+% \usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks]{hyperref}
+% \usepackage[colorlinks, pagebackref=true]{hyperref}
+% \usepackage[dvipsnames]{xcolor}
+
 \usepackage{tikz}
-\usetikzlibrary{arrows, positioning, shapes, shapes.multipart, spy}
+\usetikzlibrary{arrows, calc, external, fit, positioning, shapes, spy}
+% \tikzexternalize[prefix={figs/_TikZ/}]
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer}
 
-\usepackage[hang]{caption}
-
-\usepackage{array}
-
-\usepackage{subfig}
+\usepackage{
+	array,
+	multirow,
+	subfig,
+	xfrac
+}
 
 \usepackage[export]{adjustbox}
 
-\usepackage{graphicx}
+\usepackage{graphicx, graphbox}
 \graphicspath{{figs/}, {title/}}
 
 \renewcommand*{\arraystretch}{1.33}
@@ -51,14 +69,11 @@
 \newcolumntype{B}[1]{>{ \centering  \arraybackslash }b{#1}}
 \newcolumntype{C}[1]{>{ \raggedleft \arraybackslash }b{#1}}
 
-% TODO
-\usepackage{multicol}
-\newcommand*{\mycaption}[1]{\begin{center}\small #1\end{center}}
-
 
 
 
 \begin{document}
+
 
 \begin{tcbposter}[
  poster={columns=3, rows=4}, fontsize=20pt,
@@ -77,6 +92,8 @@
  }]
 
 \tcbsetforeverylayer{before upper=\parindent20pt}
+
+
 
 
 \posterbox[
@@ -103,9 +120,11 @@
 		 \texttt{\{firstname.lastname\}@cs.tu-chemnitz.de}
 }
 
+
 \posterbox[adjusted title={Abstract}]{name=abstract, below=title}{
 	\lipsum[1-2]
 }
+
 
 \posterbox[adjusted title={References}]{name=references, column=1, span=1.5, above=bottom}{
 	\tiny
@@ -114,9 +133,11 @@
 	\bibliography{library}
 }
 
+
 \posterbox[adjusted title={Acknowledgment}]{name=acknowledgment, column*=3, span=1.5, above=bottom}{
-	% The European Union and the European Social Fund for Germany partially funded this research. This work was also partially funded by the German Federal Ministry of Education and Research in the program of Entrepreneurial Regions InnoProfileTransfer in the project group localizeIT (funding code 03IPT608X).
-	This research is partially funded by the European Social Fund for Germany as well as the German Federal Ministry of Education and Research within the project group localizeIT.
+	The European Union and the European Social Fund for Germany partially funded this research.
+	% This research is partially funded by the European Social Fund for Germany as well as the German Federal Ministry of Education and Research within the project group localizeIT.
+	% This research is partially funded by the European Social Fund for Germany as well as the German Federal Ministry of Education and Research within the project group localizeIT (funding code 03IPT608X).
 
 	% Insert your logos here
 	% $\vcenter{\hbox{\includegraphics[width=0.3\textwidth]{{TUC-Logos/TU_Chemnitz_positiv_gruen}.pdf}}}$%
@@ -125,9 +146,11 @@
 	% $\vcenter{\hbox{\includegraphics[width=0.66\textwidth]{{ESF-Logos/SMWA_ESF_LO_Sachsen_QUER_RGB_RZ-eps-converted-to}.pdf}}}$
 }
 
+
 \posterbox[adjusted title={Test results, evaluation, and discussion}]{name=test, column=2, span=2, above=acknowledgment}{
 	\lipsum[1-4]
 }
+
 
 \posterbox[adjusted title={Introduction and motivation}]{name=introduction, between=abstract and references}{
 	TODO \cite{Schlosser2018}
@@ -135,9 +158,11 @@
 	\lipsum[1-4]
 }
 
-\posterbox[adjusted title={Fundamentals}]{name=fundamentals, column=2, between=title and test}{
+
+\posterbox[adjusted title={Fundamentals and methods}]{name=fundamentals, column=2, between=title and test}{
 	\lipsum[1-4]
 }
+
 
 \posterbox[adjusted title={Implementation}]{name=implementation, column=3, between=title and test}{
 	\lipsum[1-4]
