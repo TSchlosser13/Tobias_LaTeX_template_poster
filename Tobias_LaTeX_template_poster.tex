@@ -1,0 +1,166 @@
+%===============================================================================
+% Tobias_LaTeX_template_poster
+%===============================================================================
+% v1.0 - 24.11.2018
+%
+% Copyright (c) 2018 Tobias Schlosser (tobias@tobias-schlosser.net)
+%===============================================================================
+
+
+
+
+\documentclass[12pt]{article}
+
+
+\usepackage[a1paper]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[poster]{tcolorbox}
+\usepackage{lipsum}
+
+\newcommand*{\mycaption}[1]{\begin{center}\small #1\end{center}}
+
+\pagestyle{empty}
+
+
+% Tobias
+
+\usepackage{amsfonts, lmodern, mathtools, microtype}
+
+\usepackage[main=english, ngerman]{babel}
+\usepackage[hang]{caption}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[hyphens]{url}
+% \usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks]{hyperref}
+% \usepackage[colorlinks, pagebackref=true]{hyperref}
+% \usepackage[dvipsnames]{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, calc, external, fit, positioning, shapes, spy}
+% \tikzexternalize[prefix={figs/_TikZ/}]
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer}
+
+\usepackage{
+	array,
+	multirow,
+	subfig,
+	xfrac
+}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{graphicx, graphbox}
+\graphicspath{{figs/}, {title/}}
+
+\renewcommand*{\arraystretch}{1.33}
+
+\newcolumntype{P}[1]{>{ \centering  \arraybackslash }p{#1}}
+\newcolumntype{Q}[1]{>{ \raggedleft \arraybackslash }p{#1}}
+\newcolumntype{M}[1]{>{ \centering  \arraybackslash }m{#1}}
+\newcolumntype{N}[1]{>{ \raggedleft \arraybackslash }m{#1}}
+\newcolumntype{B}[1]{>{ \centering  \arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{ \raggedleft \arraybackslash }b{#1}}
+
+
+
+
+\begin{document}
+
+
+\begin{tcbposter}[
+ poster={columns=3, rows=4}, fontsize=20pt,
+ boxes={
+	 enhanced jigsaw,
+	 fonttitle=\scshape\bfseries\large,
+	 sharp corners=downhill, arc=0.33cm, boxrule=0.1cm,
+	 title style={left color=black!75!Green, right color=black!25!Green},
+	 colback=white, colframe=black
+ },
+ coverage={
+	 spread,
+	 interior style  = {top color=yellow!90!red, bottom color=yellow!50!red},
+	 watermark text  = {Tobias\_\LaTeX\_template\_poster},
+	 watermark color = white
+ }]
+
+\tcbsetforeverylayer{before upper=\parindent20pt}
+
+
+
+
+\posterbox[
+ blankest, interior engine=path,
+ fontupper=\bfseries, colupper=black!75!red,
+ height=10cm, halign=center, valign=center,
+ %
+ underlay={
+	 \node[right] at (frame.west) {\includegraphics[height=7.5cm]{{TU_Chemnitz_Logo_gruen_RGB}.png}};
+	 \node[left]  at (frame.east) {\includegraphics[height=7.5cm]{{TU_Chemnitz_Logo_gruen_RGB}.png}};
+ }]{
+	 name=title, column=1, span=3, below=top}{
+		 \textbf{\LARGE Title} \\[1cm]
+		 Tobias Schlosser \\
+		 Junior Professorship of Media Computing, \\
+		 % Chemnitz University of Technology, \\
+		 % 09107 Chemnitz, Germany, \\
+		 Chemnitz University of Technology, 09107 Chemnitz, Germany, \\
+		 % \texttt{\tiny \{firstname.lastname\}@informatik.tu-chemnitz.de}
+		 % \texttt{\tiny \{firstname.lastname\}@cs.tu-chemnitz.de}
+		 \texttt{\{firstname.lastname\}@cs.tu-chemnitz.de}
+}
+
+
+\posterbox[adjusted title={Abstract}]{name=abstract, below=title}{
+	\lipsum[1-2]
+}
+
+
+\posterbox[adjusted title={References}]{name=references, column=1, span=1.5, above=bottom}{
+	\tiny
+	\renewcommand{\section}[2]{} % https://tex.stackexchange.com/questions/22645/hiding-the-title-of-the-bibliography
+	\bibliographystyle{alphadin_Tobias}
+	\bibliography{library}
+}
+
+
+\posterbox[adjusted title={Acknowledgment}]{name=acknowledgment, column*=3, span=1.5, above=bottom}{
+	The European Union and the European Social Fund for Germany partially funded this research.
+	% This research is partially funded by the European Social Fund for Germany as well as the German Federal Ministry of Education and Research within the project group localizeIT.
+	% This research is partially funded by the European Social Fund for Germany as well as the German Federal Ministry of Education and Research within the project group localizeIT (funding code 03IPT608X).
+
+	$\vcenter{\hbox{\includegraphics[width=0.15\textwidth]{{TU_Chemnitz_Logo_gruen_RGB}.png}}}$%
+	$\vcenter{\hbox{\includegraphics[width=0.66\textwidth]{{SMWA_ESF_LO_Sachsen_QUER_RGB_RZ-eps-converted-to}.pdf}}}$
+}
+
+
+\posterbox[adjusted title={Test results, evaluation, and discussion}]{name=test, column=2, span=2, above=acknowledgment}{
+	\lipsum[1-4]
+}
+
+
+\posterbox[adjusted title={Introduction and motivation}]{name=introduction, between=abstract and references}{
+	TODO \cite{Middleton2005}
+
+	\lipsum[1-4]
+}
+
+
+\posterbox[adjusted title={Fundamentals and methods}]{name=fundamentals, column=2, between=title and test}{
+	\lipsum[1-4]
+}
+
+
+\posterbox[adjusted title={Implementation}]{name=implementation, column=3, between=title and test}{
+	\lipsum[1-4]
+}
+
+
+\end{tcbposter}
+\end{document}
+
