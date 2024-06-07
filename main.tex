@@ -1,0 +1,147 @@
+%===============================================================================
+% Tobias_LaTeX_template_poster
+%===============================================================================
+% v1.0 - 19.04.2024
+%
+% Copyright (c) 2024 Tobias Schlosser (tobias@tobias-schlosser.net)
+%===============================================================================
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% documentclass
+
+\documentclass{article}
+
+
+% usepackages
+
+\usepackage{lmodern, microtype}
+
+% \usepackage[main=ngerman, english]{babel}
+\usepackage[main=english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[natbibapa]{apacite}
+\newcommand{\doi}[1]{#1}
+
+\usepackage[colorlinks, citecolor=LimeGreen]{hyperref}
+\usepackage[dvipsnames, table]{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, backgrounds, calc, decorations, calligraphy, external, fit, positioning, shapes, spy}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{graphicx}
+\graphicspath{{figs/}, {title/}}
+
+\usepackage{lettrine, GoudyIn}
+\definecolor{drop_cap_color}{HTML}{196964}
+\renewcommand{\LettrineFontHook}{\color{drop_cap_color}\GoudyInfamily}
+
+\usepackage[poster]{tcolorbox}
+\usepackage[landscape, a4paper]{geometry}
+
+
+% Miscellaneous
+
+\newcommand{\mycaptionskip}{\vspace{2ex}}
+\newcommand{\mycaption}[1]{\vspace{1ex}\begin{minipage}{0.85\textwidth}#1\end{minipage}\mycaptionskip}
+
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{tcbposter}[
+ poster={columns=2, rows=3},
+ boxes={
+	 enhanced jigsaw,
+	 colback=white, colframe=black,
+	 fonttitle=\sffamily\bfseries\large,
+	 sharp corners,
+	 title style={LimeGreen}
+ },
+ coverage={spread, interior style = {top color=Yellow!90!Red, bottom color=Yellow!50!Red}}]
+
+
+
+
+\posterbox[
+ halign=center, valign=center, boxsep=0.2cm,
+ underlay={
+	\node[right] at (frame.west) {\includegraphics[height=4cm, trim={50 100 50 100}, clip]{{TUC-Logos_20220929_2025/KHS_TUC_Logo_farbig_eng}.pdf}};
+	\node[left]  at (frame.east) {\includegraphics[height=4cm, trim={50 100 50 100}, clip]{{TUC-Logos_20220929_2025/KHS_TUC_Logo_farbig_eng}.pdf}};
+ }]{
+ name=title, column=1, span=2, below=top}{
+	 \sffamily\bfseries\Huge A \\ Long \\ Title
+ }
+
+
+
+
+\posterbox[
+ halign=center, valign=center, boxsep=0cm]{
+ name=information, column=1, span=2, below=title}{
+	 \sffamily\bfseries\Large Tobias Schlosser | What? | When?, Where?
+ }
+
+
+
+
+\posterbox[adjusted title={References}]{name=references, column=1, above=bottom}{
+	\renewcommand{\section}[2]{} % https://tex.stackexchange.com/questions/22645/hiding-the-title-of-the-bibliography
+	\renewcommand{\bibfont}{\tiny} % https://tex.stackexchange.com/questions/329/how-to-change-font-size-for-bibliography
+	\bibliographystyle{apacite}
+	\bibliography{library}
+}
+
+
+
+
+\posterbox[adjusted title={Acknowledgment}]{name=acknowledgment, column=2, above=bottom}{
+	$\vcenter{\hbox{\includegraphics[width=0.33\textwidth, trim={50 150 0 150}, clip]{{TUC-Logos_20220929_2025/KHS_TUC_Logo_einfarbig_eng}.pdf}}}$%
+	\hfill
+	$\vcenter{\hbox{\includegraphics[width=0.66\textwidth]{{ESF-Logos_20220929/SMWA_ESF_LO_Sachsen_2019_QUER_RGB}.png}}}$
+}
+
+
+
+
+\posterbox[adjusted title={Abstract}]{name=abstract, column=1, between=information and references}{
+	\small
+
+
+	\lettrine[lines=4]{L}{orem} ipsum (...). See \cite{schlosser2022improving}.
+}
+
+
+
+
+\posterbox[]{name=figures, column=2, between=information and acknowledgment}{
+	\centering
+	\scriptsize
+
+
+	Images
+}
+
+
+
+
+\end{tcbposter}
+
+
+
+
+\end{document}
+
